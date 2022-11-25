@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+        stages {
+            stage('Clone Git') {
+                steps {
+                    git 'https://github.com/vivektangudu123/jenkins.git'
+                }
+            }
+            stage('Build Code') {
+                steps {
+                    sh "/usr/bin/python3 lcm.py"
+                }
+            }
+            stage('Test Code') {
+                steps {
+                    sh "/usr/bin/python3 Test.py"
+                }
+            }
+            stage('Monitoring') {
+                steps{
+                    echo "This step is monitoring"
+                }
+            }
+        }
+}
